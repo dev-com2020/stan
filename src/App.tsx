@@ -4,6 +4,7 @@ import { ApolloClient,
           ApolloProvider
  } from '@apollo/client';
 import { Header } from './Header';
+import { RepoPage } from './repoPage/RepoPage';
 
 
 const queryClient = new ApolloClient({
@@ -18,7 +19,7 @@ function App() {
 return (
   <ApolloProvider client={queryClient}>
     <Header/>
-    {/* <RepoPage /> */}
+    <RepoPage />
   </ApolloProvider>
 
 
