@@ -1,12 +1,9 @@
+import { useAppContext } from "./AppContext"
 import { Content } from "./Content"
-import { User } from "./api/authenticate"
 
-type Props = {
-    user: undefined | User
-    permission: undefined | string[]
-}
 
-export function Main({user, permission}: Props){
+export function Main(){
+    const {user} = useAppContext();
     return (
         <main>
             <h1>Witamy</h1>
@@ -14,7 +11,7 @@ export function Main({user, permission}: Props){
         <p>
             {user ? `Witaj ${user.name}!` : 'Zaloguj się'}
         </p>
-        <Content permissions={permission}/>
+        <Content/>
         </main>
     )
 }
