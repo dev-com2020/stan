@@ -23,8 +23,8 @@ export function assertIsPosts(
             if (!('id' in post)) {
                 throw new Error("brak ID")
             }
-            if (typeof post.id !== 'number'){
-                throw new Error("id nie jest numerem")
-            }
+            // if (typeof post.id !== 'number'){
+            //     throw new Error("id nie jest numerem")
+            // }
         })
     }
