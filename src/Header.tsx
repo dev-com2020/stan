@@ -1,23 +1,22 @@
+import { useDispatch, useSelector } from 'react-redux';
 import { authenticate } from './api/authenticate';
 import { authorize } from './api/authorize';
-import { useAppContext } from './AppContext';
+import { RootState } from './store/store';
+import { authenticateAction, authenticatedAction, authorizeAction, authorizedAction } from './store/userSlice';
 
 export function Header() {
-  const { user, loading, dispatch } = useAppContext();
+  const user = useSelector((state: RootState) => state.user.user)
+  const loading = useSelector((state: RootState) => state.user.loading)
+  const dispatch = useDispatch()
+
   async function handleSignInClick() {
-    dispatch({ type: 'authenticate' });
+    dispatch(authenticateAction());
     const authenticatedUser = await authenticate();
-    dispatch({
-      type: 'authenticated',
-      user: authenticatedUser,
-    });
+    dispatch(authenticatedAction());
     if (authenticatedUser !== undefined) {
-      dispatch({ type: 'authorize' });
+      dispatch(authorizeAction());
       const authorizedPermissions = await authorize(authenticatedUser.id);
-      dispatch({
-        type: 'authorized',
-        permissions: authorizedPermissions,
-      });
+      dispatch(authorizedAction(authorizedPermissions));
     }
   }
   return (

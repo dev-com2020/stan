@@ -1,16 +1,17 @@
 import { Main } from "./Main"
 import { Header } from "./Header";
-import { AppProvider } from "./AppContext";
 import './App.css';
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 
 function App() {
 return (
   <div>
-    <AppProvider>
+    <Provider store={store}>
     <Header/>
     <Main/>
-    </AppProvider>
+    </Provider>
     </div>
 )
 }
