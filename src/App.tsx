@@ -1,18 +1,16 @@
-import { Main } from "./Main"
-import { Header } from "./Header";
 import './App.css';
-import { Provider } from "react-redux";
-import { store } from "./store/store";
+import { PostsPage } from "./posts/PostsPage";
 
 
 function App() {
 return (
-  <div>
-    <Provider store={store}>
-    <Header/>
-    <Main/>
-    </Provider>
-    </div>
+  // <div>
+  //   <Provider store={store}>
+  //   <Header/>
+  //   <Main/>
+  //   </Provider>
+  //   </div>
+  <PostsPage/>
 )
 }
 export default App;
