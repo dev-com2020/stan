@@ -5,6 +5,7 @@ import { RootState } from "./store/store"
 export function Content(){
     const permissions = useSelector(
         (state: RootState) => state.user.permissions)
+        
     if (permissions === undefined){
         return null
     }

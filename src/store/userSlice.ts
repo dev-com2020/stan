@@ -14,7 +14,7 @@ type State = {
     loading: false
   }
 
-export const userSlice = createSlice({
+export const userReducer = createSlice({
     name: 'user',
     initialState,
     reducers: {
@@ -38,6 +38,6 @@ export const userSlice = createSlice({
 })
 
 export const { authenticateAction, authenticatedAction,
-authorizeAction,authorizedAction} = userSlice.actions
+authorizeAction,authorizedAction} = userReducer.actions
 
-export default userSlice.reducer
+export default userReducer.reducer
