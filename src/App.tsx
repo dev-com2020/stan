@@ -1,7 +1,17 @@
+import { useState } from 'react';
 import './App.css';
-import { CheckList } from './Checklist';
+import { CheckList, idValue } from './Checklist';
 
 function App() {
+  const [checkedId,setCheckedId] = useState<idValue | null>(null)
+  function handleCheckedIdsChange(newCheckedIds: idValue[]){
+    const newCheckedIdArr = newCheckedIds.filter((id) => id !== checkedId)
+    if (newCheckedIdArr.length === 1){
+      setCheckedId(newCheckedIdArr[0])
+    } else {
+      setCheckedId(null)
+    }
+  }
   return (
     <div>
       <CheckList
@@ -20,6 +30,8 @@ function App() {
           maxHeight: '380px',
           overflowY: 'auto'
         }}
+        checkedIds={checkedId === null ? []: [checkedId]}
+        onCheckedIdsChange={handleCheckedIdsChange}
         // renderItem={(item) => (
         //   <li key={item.id} className=''>
         //     <div className=''>{item.name}</div>
