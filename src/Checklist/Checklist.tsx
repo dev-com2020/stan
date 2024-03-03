@@ -1,18 +1,21 @@
+import { ComponentPropsWithoutRef } from "react"
+
 type Props<Data> = {
     data: Data[]
     id: keyof Data
     primary: keyof Data
     secondary: keyof Data
-}
+} & ComponentPropsWithoutRef<'ul'>
 
 export function CheckList<Data>({
     data,
     id,
     primary,
-    secondary
+    secondary,
+    ...ulProps
 }: Props<Data>){
     return (
-        <ul>
+        <ul className="" {...ulProps}>
             {data.map((item) => {
                 const idValue = item[id] as unknown
                 if (
