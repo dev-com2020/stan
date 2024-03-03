@@ -20,12 +20,12 @@ function App() {
           maxHeight: '380px',
           overflowY: 'auto'
         }}
-        renderItem={(item) => (
-          <li key={item.id} className=''>
-            <div className=''>{item.name}</div>
-            <div className=''>{item.role}</div>
-          </li>
-        )}
+        // renderItem={(item) => (
+        //   <li key={item.id} className=''>
+        //     <div className=''>{item.name}</div>
+        //     <div className=''>{item.role}</div>
+        //   </li>
+        // )}
       />
     </div>
   )
