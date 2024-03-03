@@ -1,35 +1,19 @@
 import './App.css';
-import { ApolloClient,
-          InMemoryCache,
-          ApolloProvider
- } from '@apollo/client';
-import { Header } from './Header';
-import { RepoPage } from './repoPage/RepoPage';
-
-
-const queryClient = new ApolloClient({
-  uri: process.env.REACT_APP_GITHUB_URL!,
-  cache: new InMemoryCache(),
-  headers:{
-    Authorization: `bearer ${process.env.REACT_APP_GITHUB_PAT}`
-  }
-})
+import { CheckList } from './Checklist';
 
 function App() {
-return (
-  <ApolloProvider client={queryClient}>
-    <Header/>
-    <RepoPage />
-  </ApolloProvider>
-
-
-  // <div>
-  //   <Provider store={store}>
-  //   <Header/>
-  //   <Main/>
-  //   </Provider>
-  //   </div>
-  // <PostsPage/>
+  return (
+<div>
+  <CheckList 
+  data={[
+    {id: 1, name: 'Tomek', role: 'Admin'},
+    {id: 2, name: 'Natalia', role: 'Developer'},
+  ]}
+  id="id"
+  primary="name"
+  secondary="role"
+  />
+</div>
 )
 }
 export default App;
