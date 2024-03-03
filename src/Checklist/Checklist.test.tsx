@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import { CheckList } from './Checklist';
-import exp from 'constants';
+import userEvent from '@testing-library/user-event';
 
 test('renders CheckList with data', () => {
     render(
@@ -31,3 +31,19 @@ test('should render correct list item', () => {
     )
     expect(screen.getByText('Item 1 -- Manager')).toBeInTheDocument()
 });
+
+test('should check items when clicked', async () => {
+    const user = userEvent.setup()
+    render(
+        <CheckList 
+        data={[{ id: '1', primary: 'Adam', secondary: 'Manager'}]}   
+        id = 'id'
+        primary = 'primary'
+        secondary = 'secondary'
+        checkedIds={[1]}
+        />
+    )
+    const adamCheckBox = screen.getByTestId("Checklist__input__1")
+    expect(adamCheckBox).not.toBeChecked()
+    await user.click(adamCheckBox)
+})
