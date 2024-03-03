@@ -1,10 +1,11 @@
-import { ComponentPropsWithoutRef } from "react"
+import { ComponentPropsWithoutRef, ReactNode } from "react"
 
 type Props<Data> = {
     data: Data[]
     id: keyof Data
     primary: keyof Data
     secondary: keyof Data
+    renderItem?: (item: Data) => ReactNode
 } & ComponentPropsWithoutRef<'ul'>
 
 export function CheckList<Data>({
@@ -12,11 +13,15 @@ export function CheckList<Data>({
     id,
     primary,
     secondary,
+    renderItem,
     ...ulProps
 }: Props<Data>){
     return (
         <ul className="" {...ulProps}>
             {data.map((item) => {
+                if (renderItem) {
+                    return renderItem(item)
+                }
                 const idValue = item[id] as unknown
                 if (
                     typeof idValue !== 'string' &&
